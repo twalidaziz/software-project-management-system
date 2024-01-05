@@ -20,13 +20,13 @@ class DatabaseSeeder extends Seeder
     public function run(): void {
         $users = [
             [
-                'name' => 'Admin',            // 1
+                'name' => 'Admin',           // 1
                 'email' => 'admin@uniten.edu.my',
                 'password' => bcrypt('password'),
                 'user_level' => 0,
             ],
             [
-                'name' => 'John Marston',     // 2
+                'name' => 'John Marston',    // 2
                 'email' => 'jmarston@uniten.edu.my',
                 'password' => bcrypt('password'),
                 'user_level' => 1,
@@ -35,22 +35,19 @@ class DatabaseSeeder extends Seeder
                 'name'=>'Solomon Reed',     // 3
                 'email'=>'sreed@uniten.edu.my',
                 'password'=> bcrypt('password'),
-                'user_level' => 2,
-                'lead_developer' => true
+                'user_level' => 2
             ],
             [
                 'name'=>'Nathan Drake',     // 4
                 'email'=>'ndrake@uniten.edu.my',
                 'password'=> bcrypt('password'),
-                'user_level' => 2,
-                'lead_developer' => true
+                'user_level' => 2
             ],
             [
                 'name'=>'Niko Bellic',      // 5
                 'email'=>'nbellic@uniten.edu.my',
                 'password'=> bcrypt('password'),
                 'user_level' => 2,
-                'lead_developer' => true
             ],
             [
                 'name'=>'Edward Kenway',    // 6
@@ -125,6 +122,7 @@ class DatabaseSeeder extends Seeder
         $projects = [
             [
                 'name' => 'Student Ledger Balance System',
+                'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut cursus neque. Nunc rutrum ultrices suscipit. In tincidunt, velit at iaculis tincidunt, ligula ipsum congue justo, quis posuere nunc et.',
                 'start_date' => Carbon::create('2024', '01', '02'),
                 'end_date' => Carbon::create('2024', '06', '02'),
                 'platform' => 'Web',
@@ -134,6 +132,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'E-Discussion Room Booking System',
+                'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut cursus neque. Nunc rutrum ultrices suscipit. In tincidunt, velit at iaculis tincidunt, ligula ipsum congue justo, quis posuere nunc et.',
                 'start_date' => Carbon::create('2024', '02', '05'),
                 'end_date' => Carbon::create('2024', '07', '05'),
                 'platform' => 'Mobile',
@@ -143,6 +142,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'Subject Registration System',
+                'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut cursus neque. Nunc rutrum ultrices suscipit. In tincidunt, velit at iaculis tincidunt, ligula ipsum congue justo, quis posuere nunc et.',
                 'start_date' => Carbon::create('2024', '01', '02'),
                 'end_date' => Carbon::create('2024', '06', '02'),
                 'platform' => 'Web',
@@ -159,99 +159,115 @@ class DatabaseSeeder extends Seeder
         $projectUser = [
             [
                 'user_id'=> 2,
-                'project_id'=>1,
-                'created_at'=> Carbon::now(),
-                'updated_at'=> Carbon::now()
+                'project_id' => 1,
+                'lead_developer' => false,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
-                'user_id'=>3,
-                'project_id'=>1,
-                'created_at'=> Carbon::now(),
-                'updated_at'=> Carbon::now()
+                'user_id' => 3,
+                'project_id' => 1,
+                'lead_developer' => true,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
-                'user_id'=>6,
-                'project_id'=>1,
-                'created_at'=> Carbon::now(),
-                'updated_at'=> Carbon::now()
+                'user_id' => 6,
+                'project_id' => 1,
+                'lead_developer' => false,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
-                'user_id'=>7,
-                'project_id'=>1,
-                'created_at'=> Carbon::now(),
-                'updated_at'=> Carbon::now()
+                'user_id' => 7,
+                'project_id' => 1,
+                'lead_developer' => false,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
-                'user_id'=>11,
-                'project_id'=>1,
-                'created_at'=> Carbon::now(),
-                'updated_at'=> Carbon::now()
+                'user_id' => 11,
+                'project_id' => 1,
+                'lead_developer' => false,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
-                'user_id'=>2,
-                'project_id'=>2,
-                'created_at'=> Carbon::now(),
-                'updated_at'=> Carbon::now()
+                'user_id' => 2,
+                'project_id' => 2,
+                'lead_developer' => false,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
-                'user_id'=>4,
-                'project_id'=>2,
-                'created_at'=> Carbon::now(),
-                'updated_at'=> Carbon::now()
+                'user_id' => 4,
+                'project_id' => 2,
+                'lead_developer' => true,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
-                'user_id'=>8,
-                'project_id'=>2,
-                'created_at'=> Carbon::now(),
-                'updated_at'=> Carbon::now()
+                'user_id' => 8,
+                'project_id' => 2,
+                'lead_developer' => false,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
-                'user_id'=>9,
-                'project_id'=>2,
-                'created_at'=> Carbon::now(),
-                'updated_at'=> Carbon::now()
+                'user_id' => 9,
+                'project_id' => 2,
+                'lead_developer' => false,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
-                'user_id'=>12,
-                'project_id'=>2,
-                'created_at'=> Carbon::now(),
-                'updated_at'=> Carbon::now()
+                'user_id' => 12,
+                'project_id' => 2,
+                'lead_developer' => false,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
-                'user_id'=>2,
-                'project_id'=>3,
-                'created_at'=> Carbon::now(),
-                'updated_at'=> Carbon::now()
+                'user_id' => 2,
+                'project_id' => 3,
+                'lead_developer' => false,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
-                'user_id'=>5,
-                'project_id'=>3,
-                'created_at'=> Carbon::now(),
-                'updated_at'=> Carbon::now()
+                'user_id' => 5,
+                'project_id' => 3,
+                'lead_developer' => true,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
-                'user_id'=>8,
-                'project_id'=>3,
-                'created_at'=> Carbon::now(),
-                'updated_at'=> Carbon::now()
+                'user_id' => 8,
+                'project_id' => 3,
+                'lead_developer' => false,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
-                'user_id'=>9,
-                'project_id'=>3,
-                'created_at'=> Carbon::now(),
-                'updated_at'=> Carbon::now()
+                'user_id' => 9,
+                'project_id' => 3,
+                'lead_developer' => false,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
-                'user_id'=>10,
-                'project_id'=>3,
-                'created_at'=> Carbon::now(),
-                'updated_at'=> Carbon::now()
+                'user_id' => 10,
+                'project_id' => 3,
+                'lead_developer' => false,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
-                'user_id'=>13,
-                'project_id'=>3,
-                'created_at'=> Carbon::now(),
-                'updated_at'=> Carbon::now()
+                'user_id' => 13,
+                'project_id' => 3,
+                'lead_developer' => false,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
         ];
 
@@ -259,17 +275,17 @@ class DatabaseSeeder extends Seeder
 
         $progressReports = [
             [
-                'status'=>'Ahead Of Schedule',
+                'status'=>'AHEAD OF SCHEDULE',
                 'remarks'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut cursus neque. Nunc rutrum ultrices suscipit. In tincidunt, velit at iaculis tincidunt, ligula ipsum congue justo, quis posuere nunc et.',
                 'project_id' => 1
             ],
             [
-                'status'=>'Delayed',
+                'status'=>'DELAYED',
                 'remarks'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut cursus neque. Nunc rutrum ultrices suscipit. In tincidunt, velit at iaculis tincidunt, ligula ipsum congue justo, quis posuere nunc et.',
                 'project_id' => 2
             ],
             [
-                'status'=>'On Schedule',
+                'status'=>'ON SCHEDULE',
                 'remarks'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut cursus neque. Nunc rutrum ultrices suscipit. In tincidunt, velit at iaculis tincidunt, ligula ipsum congue justo, quis posuere nunc et.',
                 'project_id' => 3
             ],

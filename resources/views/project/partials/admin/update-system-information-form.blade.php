@@ -13,22 +13,22 @@
         @csrf
     </form>
 
-    <form method="post" action="#" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('project.update', $project) }}" class="mt-6 space-y-6">
         @csrf
         @method('patch')
 
         <!-- System platform -->
         <x-input-label style="margin-bottom: 8px" for="platforms" :value="__('System platform')" />
-        <select id="platforms" style="margin-top: 8px" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <select id="platforms" name="platform" style="margin-top: 8px" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             <option selected>{{ $project->platform }}</option>
-            <option value="Mobile">Mobile</option>
-            <option value="Stand-alone">Stand-alone</option>
-            <option value="Web-based">Web-based</option>
+            <option value="Web Application">Web Application</option>
+            <option value="Mobile Application">Mobile Application</option>
+            <option value="Stand-alone Application">Stand-alone Application</option>
         </select>
         
         <!-- Development methodology -->
         <x-input-label style="margin-bottom: 8px" for="methodologies" :value="__('Development methodology')" />
-        <select id="methodologies" style="margin-top: 8px" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <select id="methodologies" name="methodology" style="margin-top: 8px" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             <option selected>{{ $project->methodology }}</option>
             <option value="Agile">Agile</option>
             <option value="Prototyping">Prototyping</option>

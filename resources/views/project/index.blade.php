@@ -22,10 +22,7 @@
                                     Platform
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    Methodology
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Deployment
+                                    Last Updated
                                 </th>
                                 <th scope="col" class="px-6 py-3">
                                     <span class="sr-only">Edit</span>
@@ -52,10 +49,7 @@
                                         {{ $project->platform }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{ $project->methodology }}
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        {{ $project->deployment }}
+                                        {{ $project->updated_at }}
                                     </td>
                                     <td class="px-6 py-4 text-right">
                                         <a href="{{ route('project.edit', $project->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">EDIT</a>

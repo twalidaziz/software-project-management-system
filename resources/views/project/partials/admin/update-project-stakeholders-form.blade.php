@@ -13,7 +13,7 @@
         @csrf
     </form>
 
-    <form method="post" action="#" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('project.update', $project) }}" class="mt-6 space-y-6">
         @csrf
         @method('patch')
 
@@ -23,7 +23,7 @@
         </div>
         <div class="flex space-x-4" style="margin-top: 2px">
             <!-- System owner selector -->
-            <select id="owners" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <select id="owners" name="businessUnitId" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option selected>{{ $project->businessUnit->name }}</option>
                 @foreach($businessUnits as $bu)
                     <option value="{{ $bu->id }}">{{ $bu->name }}</option>
@@ -41,26 +41,22 @@
         
         <!-- Other developers -->
         <div class="flex space-x-4" style="margin-bottom: 2px">
-            <x-input-label class="w-1/2" for="owners" :value="__('Assign a developer')" />
+            <x-input-label class="w-1/2" for="developers" :value="__('Assign developer(s)')" />
+            <x-input-label class="w-1/2" for="owners" style="margin-bottom: 9px" :value="__('Development team')" />
         </div>
-        <div class="flex space-x-4 w-1/2" style="margin-top: 2px">
-            <select id="owners" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option selected>Select a member</option>
+        <div class="flex space-x-4" style="margin-top: 2px">
+            <select multiple id="developers" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option selected>Select developer(s)</option>
                 @foreach($otherDevelopers as $od)
                     <option value="{{ $od->id }}">{{ $od->name }}</option>
                 @endforeach
             </select>  
+        <!--
             <button type="submit" class="text-white uppercase bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                 Add
             </button>       
-        </div>
-
-        <!-- Development team -->
-        <div class="flex space-x-4" style="margin-bottom: 2px">
-            <x-input-label class="w-1/2" for="owners" style="margin-bottom: 9px" :value="__('Development team')" />
-        </div>
-        <div class="flex space-x-4" style="margin-top: 2px">
-            <div class="relative overflow-x-auto w-full shadow-md sm:rounded-lg  border dark:border-gray-600" style="margin-top: 9px">
+        -->
+            <div class="relative overflow-x-auto w-1/2 shadow-md sm:rounded-lg  border dark:border-gray-600">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
@@ -79,25 +75,31 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @php($i=1)
+                        @php($i = 1)
                         @foreach($developmentTeam as $member)
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                <td class="px-6 py-4">
+                                <td class="px-6 py-3">
                                     {{ $i++ }}
                                 </td>
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                <th scope="row" class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {{ $member->name }}
                                 </th>
-                                <td class="px-6 py-4">
-                                    @if($member->user_level == 1)
-                                        Manager
-                                    @elseif($member->lead_developer == true)
-                                        Lead Developer
-                                    @else($member->user_level == 3)
-                                        Developer
-                                    @endif
+                                <td class="px-6 py-3">
+                                @if($member->user_level == 1)
+                                    Manager
+                                @elseif($member->user_level == 2)
+                                    @foreach($member->projects as $p)
+                                        @if($p->pivot->project_id == $project->id && $p->pivot->lead_developer == true)
+                                            Lead Developer
+                                            @break
+                                        @else
+                                            Developer
+                                            @break
+                                        @endif
+                                    @endforeach
+                                @endif
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-6 py-3">
                                     {{ $member->email }}
                                 </td>
                             </tr>
@@ -106,6 +108,15 @@
                 </table>
             </div> 
         </div>
+        
+        <div class="flex space-x-4" style="margin-bottom: 2px">
+            <button type="submit" class="text-white uppercase bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 w-1/2 py-2.5 me-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                Assign Developer(s)
+            </button>
+            <button type="submit" class="text-white uppercase bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 w-1/2 py-2.5 me-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                Remove All
+            </button> 
+        </div> 
 
         <div class="flex items-center gap-4 mt-6">
             <x-primary-button> {{ __('Save') }}</x-primary-button>

@@ -5,7 +5,7 @@
         </h2>
 
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            {{ __("Update project's stakeholders including the development team.") }}
+            {{ __("Update the project's stakeholders including the development team.") }}
         </p>
     </header>
 
@@ -93,7 +93,7 @@
                                         Manager
                                     @elseif($member->lead_developer == true)
                                         Lead Developer
-                                    @else
+                                    @elseif($member->user_level == 3)
                                         Developer
                                     @endif
                                 </td>

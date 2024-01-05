@@ -13,6 +13,11 @@ class Project extends Model {
 
     use HasFactory, softDeletes;
 
+    protected $fillable = [
+        'name',
+        'description'
+    ];
+
     public function progressReports(): HasMany {
 
         return $this->hasMany(ProgressReport::class);

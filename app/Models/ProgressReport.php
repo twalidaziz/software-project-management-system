@@ -11,6 +11,11 @@ class ProgressReport extends Model {
     
     use HasFactory, SoftDeletes;
 
+    protected $fillable = [
+        'status',
+        'remarks'
+    ];
+
     public function project(): BelongsTo
     {
         return $this->belongsTo(Project::class);
